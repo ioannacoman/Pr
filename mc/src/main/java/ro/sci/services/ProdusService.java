@@ -12,13 +12,20 @@ public class ProdusService {
 
     private ProdusDAO dao;
 
+
     public Collection<Produs> listAll() {
         return dao.getAll();
     }
 
+    public Collection<Produs> listProduse(String gama) {
+        return dao.getProduse(gama);
+    }
 
+    public void addProdusCom(int idProdus) {
+        dao.insertProdus(idProdus);
+    }
 
-
+    ;
 
 
     public ProdusDAO getDao() {
