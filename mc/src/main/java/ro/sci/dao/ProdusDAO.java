@@ -5,8 +5,6 @@ import ro.sci.meniu.Produs;
 import java.util.Collection;
 
 public interface ProdusDAO extends BaseDAO<Produs>{
-	Collection<Produs> getProduse(String gama);
-	void insertProdus (int idProdus);
 
-
+	Collection<Produs> searchByName(String query);
 }

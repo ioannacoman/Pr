@@ -65,7 +65,7 @@ public class Produs extends AbstractModel {
 		return gama;
 	}
 
-	public void setGama(String gama) {
+	public void setIdGama(String idGama) {
 		this.gama = gama;
 	}
 
