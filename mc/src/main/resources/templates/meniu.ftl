@@ -10,23 +10,26 @@
 	</head>
 	<body id="index" data-spy="scroll" data-target=".navbar" data-offset="50">
 		<nav class="navbar navbar-default navbar-fixed-top">
-			<div class="container-fluid">
-				<div class="navbar-header">
-					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-					</button>
-					<a class="navbar-brand" href="/meniu">SmartMeniu</a>
-				</div>
-				<div class="collapse navbar-collapse" id="myNavbar">
-					<ul class="nav navbar-nav navbar-right">
-						<li><a href="/comanda">Comanda</a></li>
-						<li><a href>0 RON</a></li>
-					</ul>
-				</div>
-			</div>
-		</nav>
+        			<div class="container-fluid">
+        				<div class="navbar-header">
+        					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        						<span class="icon-bar"></span>
+        						<span class="icon-bar"></span>
+        						<span class="icon-bar"></span>
+        					</button>
+        					<a class="navbar-brand" href="/meniu"><span class="glyphicon glyphicon-object-align-right"> SmartMeniu <span class="glyphicon glyphicon-object-align-left"></span> </a>
+
+            			</div>
+        				<div class="collapse navbar-collapse" id="myNavbar">
+        					<ul class="nav navbar-nav navbar-right">
+        						<li><a href="/comanda" class="btn btn-default btn-sm""><span class="glyphicon glyphicon-bookmark"></span> Ordin de masa <span class="glyphicon glyphicon-bookmark"></span></a></li>
+        						<li><a href>0 RON</a></li>
+        					</ul>
+        				</div>
+        			</div>
+        		</nav>
+        		<p>.</p>
+        		<p>.</p>
 		<p></p>
 		<div>
 			<p>.</p>

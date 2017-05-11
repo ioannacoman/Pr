@@ -68,7 +68,7 @@ public class JDBCProdusDAO implements ProdusDAO {
 
 	@Override
 	public void insertProdus(int idProdus) {
-		String sql = "insert into testc (id_gama) values (" + idProdus + ")";
+		String sql = "insert into comenzi_d values (1,1," + idProdus + ",1)";
 
 		try (Connection connection = newConnection();
 			 Statement statement = connection.createStatement();

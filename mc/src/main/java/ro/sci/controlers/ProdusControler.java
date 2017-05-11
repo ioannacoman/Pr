@@ -18,6 +18,7 @@ import java.util.Collection;
 @Controller
 public class ProdusControler {
     private static int lastIndex;
+    private static int currentTableNr;
     @Autowired
     private ProdusService produsService;
     @Autowired
@@ -40,11 +41,12 @@ public class ProdusControler {
 
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public ModelAndView refresh(@RequestParam int idProdus) {
-
         produsService.addProdusCom(idProdus);
-        ModelAndView result = new ModelAndView("/list");
-        Collection<Produs> produse = produsService.listProduse(String.valueOf(lastIndex));
-        result.addObject("produs", produse);
+        ModelAndView result = new ModelAndView("/list?id="+lastIndex);
+       // Collection<Produs> produse = produsService.listProduse(String.valueOf(lastIndex));
+     //   Gama gama = gamaService.getGama(lastIndex);
+       // result.addObject("produs", produse);
+       // result.addObject("gama",gama);
         return result;
 
     }
@@ -61,4 +63,11 @@ public class ProdusControler {
         return result;
 
     }
+
+
+    @RequestMapping(value = "/")
+        public ModelAndView index(@RequestParam int tableId) {
+        currentTableNr = tableId;
+        return new ModelAndView("index");
+        }
 }

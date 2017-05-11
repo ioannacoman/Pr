@@ -55,7 +55,7 @@
 				<tr></tr>
 				[#list produs as produs]
 				<tr>
-					<td><img src="/images/produse/${produs.idProdus}.png" width="90" height="90"></td>
+					<td><img src="/images/produse/${produs.idProdus}.jpg" alt = "${produs.idProdus}" width="90" height="90"></td>
 					<td>${produs.nrCrt}</td>
 					<td>${produs.numeProdus}</td>
 					<td><h6>${produs.descriere}</h6></td>
