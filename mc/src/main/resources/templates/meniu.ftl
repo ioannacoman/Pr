@@ -1,15 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<title> --== Master Chef ==-- </title>
+		<title>-=SmartMeniu=-Meniu</title>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<style>
+        			body{
+        				background-color: lightyellow
+        				}
+        		</style>
 	</head>
 	<body id="index" data-spy="scroll" data-target=".navbar" data-offset="50">
-		<nav class="navbar navbar-default navbar-fixed-top">
+		<nav class="navbar navbar-default navbar-fixed-top" style="background-color: yellow;">
         			<div class="container-fluid">
         				<div class="navbar-header">
         					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -17,13 +22,13 @@
         						<span class="icon-bar"></span>
         						<span class="icon-bar"></span>
         					</button>
-        					<a class="navbar-brand" href="/meniu"><span class="glyphicon glyphicon-object-align-right"> SmartMeniu <span class="glyphicon glyphicon-object-align-left"></span> </a>
+        					<a class="navbar-brand" href="/meniu"><span class="glyphicon glyphicon-object-align-right"></span> SmartMeniu <span class="glyphicon glyphicon-object-align-left"></span></a>
 
             			</div>
         				<div class="collapse navbar-collapse" id="myNavbar">
         					<ul class="nav navbar-nav navbar-right">
         						<li><a href="/comanda" class="btn btn-default btn-sm""><span class="glyphicon glyphicon-bookmark"></span> Ordin de masa <span class="glyphicon glyphicon-bookmark"></span></a></li>
-        						<li><a href>0 RON</a></li>
+        						<li><a href>${suma.suma} RON</a></li>
         					</ul>
         				</div>
         			</div>

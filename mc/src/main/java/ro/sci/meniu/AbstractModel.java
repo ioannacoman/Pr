@@ -1,8 +1,5 @@
 package ro.sci.meniu;
-
-public abstract class AbstractModel {
-
-
-	
-
-}
+/**
+ * Created by Skipy on 5/12/2017.
+ */
+public abstract class AbstractModel {}

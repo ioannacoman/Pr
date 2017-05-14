@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Smart Meniu</title>
+    <title>-=SmartMeniu-ODM=-</title>
 
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -18,37 +18,63 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
   </head>
-  <body>
+  <style>
+          			body{
+          				background-color: lightgray
+          				}
+          		</style>
+  <body id="index" data-spy="scroll" data-target=".navbar" data-offset="50">
+  		<nav class="navbar navbar-default navbar-fixed-top" style="background-color: #ffe699;>
+  			<div class="container-fluid">
+  				<div class="navbar-header">
+  					<a class="navbar-brand" href="/meniu"><span class="glyphicon glyphicon-backward"></span> SmartMeniu </a>
+  				    <a class="navbar-brand"> <span class="glyphicon glyphicon-bookmark"></span> Ordin de Masa <span class="glyphicon glyphicon-bookmark"></span> </a>
+  				</div>
+  			</div>
+  		</nav>
+  		<p>.</p>
+  		<p>.</p>
 <div>
 <table class="table">
-    <tr>
+    <tr class="success">
         <th>Nr.Crt</th>
-        <th>Nume Produs</th>
-        <th>Continut</th>
-        <th>Cantitate</th>
         <th></th>
+        <th>Nume Produs</th>
+        <th>Cantitate</th>
         <th>Pret</th>
+        <th>Pret Total</th>
         <th></th>
         <th></th>
         <th></th>
     </tr>
     <tr></tr>
     [#list produseComandate as produseComandate]
-    <tr>
+    <tr class="info">
         <td>${produseComandate.nrCrt}</td>
-        <td>${produseComandate.numeProdus}</td>
-        <td>${produseComandate.descriere}</td>
-        <td>${produseComandate.cant}</td>
-        <td>${produseComandate.buc}</td>
-        <td>${produseComandate.pret}</td>
-        <td><span class="glyphicon glyphicon-plus" aria-hidden="true"></td>
-        <th></th>
-        <th></th>
+        <td><img src="/images/produse/${produseComandate.idProdus}.jpg" width="120" height="90"></td>
+        <td><a href="/produse?idProdus=${produseComandate.idProdus}">${produseComandate.gama} - ${produseComandate.numeProdus}</a></td>
+        <td>${produseComandate.cant} ${produseComandate.unitateMasura}</td>
+        <td>${produseComandate.buc} x ${produseComandate.pret}</td>
+        <td>${produseComandate.pretTotal} RON</td>
+        <td><a href = "/add?idProdus=${produseComandate.idProdus}&addStatus=2"><span class="glyphicon glyphicon-plus"></a></td>
+        <th><a href = "/remove?idProdus=${produseComandate.idProdus}&aOrb=1"><span class="glyphicon glyphicon-minus" aria-hidden="true"></th>
+        <th><a href = "/remove?idProdus=${produseComandate.idProdus}&aOrb=2"><span class="glyphicon glyphicon-remove"></th>
     </tr>
     [/#list]
 </table>
-</div>
+<p>.</p>
+ <p>.</p>
+<nav class="navbar navbar-default navbar-fixed-bottom" style="background-color: lightgreen;>
+  			<div class="container-fluid">
+  				<div class="navbar-header">
+  					<a href="/abandon" class="btn btn-danger btn-sm""><span class="glyphicon glyphicon-remove-circle"></span> Anulare Comanda! </a>
+  				    <a href="/finish" class="btn btn-success btn-sm""><span class="glyphicon glyphicon-ok-circle"></span> Trimite Comanda! </a>
+  					<span>Total Comanda: ${suma.suma} RON</span>
 
+  				</div>
+  			</div>
+  		</nav>
+</div>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->

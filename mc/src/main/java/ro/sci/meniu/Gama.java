@@ -12,9 +12,7 @@ public class Gama extends AbstractModel {
     @NotEmpty
     private String gama;
 
-    public int getIdGama() {
-        return idGama;
-    }
+    public int getIdGama() { return idGama; }
 
     public void setIdGama(int idGama) {
         this.idGama = idGama;
@@ -26,5 +24,10 @@ public class Gama extends AbstractModel {
 
     public void setGama(String gama) {
         this.gama = gama;
+    }
+
+    @Override
+    public String toString() {
+        return "Gama [idGama="+ idGama +", gama="+ gama +"]";
     }
 }

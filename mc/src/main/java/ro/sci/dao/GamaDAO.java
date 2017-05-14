@@ -7,4 +7,5 @@ import ro.sci.meniu.Gama;
  */
 public interface GamaDAO extends BaseDAO<Gama> {
     Gama getGama(int idGama);
+    Gama getIdGama(int idProdus);
 }

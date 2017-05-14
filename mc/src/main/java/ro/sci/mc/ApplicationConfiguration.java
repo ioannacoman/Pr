@@ -4,18 +4,14 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.SingleConnectionDataSource;
-import ro.sci.dao.GamaDAO;
-import ro.sci.dao.ProdusComandatDAO;
-import ro.sci.dao.ProdusDAO;
-import ro.sci.db.JDBCGamaDAO;
-import ro.sci.db.JDBCProdusComandatDAO;
-import ro.sci.db.JDBCProdusDAO;
-import ro.sci.services.GamaService;
-import ro.sci.services.ProdusComandatService;
-import ro.sci.services.ProdusService;
+import ro.sci.dao.*;
+import ro.sci.db.*;
+import ro.sci.services.*;
 
 import javax.sql.DataSource;
-
+/**
+ * Created by Skipy on 5/12/2017.
+ */
 @Configuration
 public class ApplicationConfiguration {
 
@@ -27,7 +23,6 @@ public class ApplicationConfiguration {
 
     @Value("${db.user}")
     private String dbUser;
-
 
     @Value("${db.name}")
     private String dbName;
@@ -44,11 +39,14 @@ public class ApplicationConfiguration {
         return new JDBCGamaDAO(dbHost, port, dbName, dbUser , dbPassword);
     }
     @Bean
-    public ProdusComandatDAO produsComandatDAO() {
-        return new JDBCProdusComandatDAO(dbHost, port, dbName, dbUser , dbPassword);
-    }
+    public ProdusComandatDAO produsComandatDAO() { return new JDBCProdusComandatDAO(dbHost, port, dbName, dbUser , dbPassword); }
+    @Bean
+    public ComandaDAO comandaDAO() { return new JDBCComandaDAO(dbHost, port, dbName, dbUser , dbPassword); }
+    @Bean
+    public SumaDAO sumaDAO() { return new JDBCSumaDAO(dbHost, port, dbName, dbUser , dbPassword); }
 
- 	@Bean
+
+    @Bean
 	public DataSource dataSource() {
 
         String url = new StringBuilder()
@@ -78,6 +76,18 @@ public class ApplicationConfiguration {
     public ProdusComandatService produsComandatService() {
         ProdusComandatService mc = new ProdusComandatService();
         mc.setProdusComandatDAO(produsComandatDAO());
+        return mc;
+    }
+    @Bean
+    public ComandaService comandaService() {
+        ComandaService mc = new ComandaService();
+        mc.setComandaDAO(comandaDAO());
+        return mc;
+    }
+    @Bean
+    public SumaService sumaService() {
+        SumaService mc = new SumaService();
+        mc.setSumaDAO(sumaDAO());
         return mc;
     }
 

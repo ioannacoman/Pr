@@ -10,11 +10,30 @@ public class ProdusComandat extends Produs {
     @NotEmpty
     private int buc;
 
-    public int getBuc() {
-        return buc;
-    }
+    @NotEmpty
+    private float pretTotal;
+    @NotEmpty
+    private int idGama;
+
+    public int getBuc() { return buc; }
 
     public void setBuc(int buc) {
         this.buc = buc;
+    }
+
+    public float getPretTotal() {
+        return pretTotal;
+    }
+
+    public void setPretTotal(float pretTotal) {
+        this.pretTotal = pretTotal;
+    }
+
+    public int getIdGama() {
+        return idGama;
+    }
+
+    public void setIdGama(int idGama) {
+        this.idGama = idGama;
     }
 }

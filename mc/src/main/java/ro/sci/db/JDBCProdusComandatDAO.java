@@ -1,7 +1,6 @@
 package ro.sci.db;
 
 import ro.sci.dao.ProdusComandatDAO;
-import ro.sci.meniu.Produs;
 import ro.sci.meniu.ProdusComandat;
 
 import java.sql.*;
@@ -27,8 +26,8 @@ public class JDBCProdusComandatDAO implements ProdusComandatDAO {
     }
 
     @Override
-    public Collection<ProdusComandat> getAll() {
-        String sql = "select rownum as nrcrt, pr.id_produs as id_produs, pr.nume_produs as nume_produs, pr.descriere as descriere, g.gama as gama, pr.um as unm, pr.cant as cant, 0 as buc, pp.pret as pret from produse pr, pr_pret pp, gama g where pr.id_gama = g.id_gama and pr.id_produs = pp.id_produs and g.id_gama = 1 ";
+    public Collection<ProdusComandat> listAll(String idComenzi) {
+        String sql = "select rownum as nrcrt, cfv.* from COMANDA_FIN_VW cfv where cfv.id_comenzi =" + idComenzi;
         Collection<ProdusComandat> result = new LinkedList<>();
         try (Connection connection = newConnection();
              Statement statement = connection.createStatement();
@@ -45,13 +44,11 @@ public class JDBCProdusComandatDAO implements ProdusComandatDAO {
         return result;
     }
 
-
-
-
     @Override
-    public boolean delete(Produs produs) {
-        return false;
+    public Collection<ProdusComandat> getAll() {
+        return null;
     }
+
 
     @Override
     public Collection<ProdusComandat> getProduse(String gama) {
@@ -60,9 +57,7 @@ public class JDBCProdusComandatDAO implements ProdusComandatDAO {
 
     @Override
     public void insertProdus(int idProdus) {
-
     }
-
 
     private ProdusComandat extractProduseComandate(ResultSet rs) throws SQLException {
         ProdusComandat produsComandat = new ProdusComandat();
@@ -72,9 +67,11 @@ public class JDBCProdusComandatDAO implements ProdusComandatDAO {
         produsComandat.setDescriere(rs.getString("descriere"));
         produsComandat.setGama(rs.getString("gama"));
         produsComandat.setUnitateMasura(rs.getString("unm"));
-        produsComandat.setBuc(rs.getInt("buc"));
+        produsComandat.setBuc(rs.getInt("buc_produse"));
         produsComandat.setCant(rs.getInt("cant"));
         produsComandat.setPret(rs.getFloat("pret"));
+        produsComandat.setPretTotal(rs.getFloat("pret_total"));
+        produsComandat.setIdGama(rs.getInt("id_gama"));
         return produsComandat;
     }
 
@@ -91,7 +88,7 @@ public class JDBCProdusComandatDAO implements ProdusComandatDAO {
                     .append(":")
                     .append(dbName).toString();
 
-            Connection result = DriverManager.getConnection(url,userName,pass);
+            Connection result = DriverManager.getConnection(url, userName, pass);
             result.setAutoCommit(false);
 
             return result;

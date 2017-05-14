@@ -3,7 +3,7 @@ package ro.sci.meniu;
 import org.hibernate.validator.constraints.NotEmpty;
 
 /**
- *
+ * Created by Skipy on 5/12/2017.
  */
 public class Produs extends AbstractModel {
 
@@ -85,6 +85,6 @@ public class Produs extends AbstractModel {
 
 	@Override
 	public String toString() {
-		return "Produs [nrCrt="+ nrCrt +"idProdus="+ idProdus +", numeProdus=" + numeProdus + ", descriere=" + descriere + ", gama=" + gama + ", cant=" + cant + ", unitateMasura=" + unitateMasura + ", pret=" + pret + "]";
-	}
+	return "Produs [nrCrt="+ nrCrt +"idProdus="+ idProdus +", numeProdus=" + numeProdus + ", descriere=" + descriere + ", gama=" + gama + ", cant=" + cant + ", unitateMasura=" + unitateMasura + ", pret=" + pret + "]";
+}
 }

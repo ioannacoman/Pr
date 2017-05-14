@@ -2,7 +2,6 @@ package ro.sci.db;
 
 import ro.sci.dao.GamaDAO;
 import ro.sci.meniu.Gama;
-import ro.sci.meniu.Produs;
 
 import java.sql.*;
 import java.util.Collection;
@@ -11,7 +10,6 @@ import java.util.Collection;
  * Created by Skipy on 5/8/2017.
  */
 public class JDBCGamaDAO implements GamaDAO {
-
 
     private String host;
     private String port;
@@ -27,16 +25,13 @@ public class JDBCGamaDAO implements GamaDAO {
         this.dbName = dbName;
     }
 
-
-
     @Override
     public Gama getGama(int idGama) {
-        String sql = "select gama from gama where id_gama ="+idGama;
+        String sql = "select id_gama, gama from gama where id_gama =" + idGama;
         Gama result = null;
         try (Connection connection = newConnection();
              Statement statement = connection.createStatement();
              ResultSet rs = statement.executeQuery(sql)) {
-
             while (rs.next()) {
                 result = extractGama(rs);
             }
@@ -49,13 +44,27 @@ public class JDBCGamaDAO implements GamaDAO {
     }
 
     @Override
-    public Collection<Gama> getAll() {
-        return null;
+    public Gama getIdGama(int idProdus) {
+        String sql = "select id_gama, gama from gama where id_gama = (select id_gama from produse where id_produs = " + idProdus +")";
+        Gama result = null;
+        try (Connection connection = newConnection();
+             Statement statement = connection.createStatement();
+             ResultSet rs = statement.executeQuery(sql)) {
+            while (rs.next()) {
+                result = extractGama(rs);
+            }
+            connection.commit();
+        } catch (SQLException ex) {
+
+            throw new RuntimeException("Error getting gama from if produs.", ex);
+        }
+        return result;
     }
 
+
     @Override
-    public boolean delete(Produs produs) {
-        return false;
+    public Collection<Gama> getAll() {
+        return null;
     }
 
 
@@ -73,19 +82,20 @@ public class JDBCGamaDAO implements GamaDAO {
                     .append(":")
                     .append(dbName).toString();
 
-            Connection result = DriverManager.getConnection(url,userName,pass);
+            Connection result = DriverManager.getConnection(url, userName, pass);
             result.setAutoCommit(false);
 
             return result;
         } catch (Exception ex) {
             throw new RuntimeException("Error getting DB connection", ex);
         }
-
     }
 
     private Gama extractGama(ResultSet rs) throws SQLException {
         Gama gama = new Gama();
+        gama.setIdGama(rs.getInt("id_gama"));
         gama.setGama(rs.getString("gama"));
         return gama;
     }
+
 }
