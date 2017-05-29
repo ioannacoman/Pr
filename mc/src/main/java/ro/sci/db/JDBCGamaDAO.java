@@ -9,6 +9,7 @@ import java.util.Collection;
 /**
  * Created by Skipy on 5/8/2017.
  */
+
 public class JDBCGamaDAO implements GamaDAO {
 
     private String host;
@@ -32,12 +33,11 @@ public class JDBCGamaDAO implements GamaDAO {
         try (Connection connection = newConnection();
              Statement statement = connection.createStatement();
              ResultSet rs = statement.executeQuery(sql)) {
-            while (rs.next()) {
+             while (rs.next()) {
                 result = extractGama(rs);
-            }
-            connection.commit();
+             }
+             connection.commit();
         } catch (SQLException ex) {
-
             throw new RuntimeException("Error getting gama.", ex);
         }
         return result;
@@ -50,30 +50,24 @@ public class JDBCGamaDAO implements GamaDAO {
         try (Connection connection = newConnection();
              Statement statement = connection.createStatement();
              ResultSet rs = statement.executeQuery(sql)) {
-            while (rs.next()) {
+             while (rs.next()) {
                 result = extractGama(rs);
-            }
-            connection.commit();
+             }
+             connection.commit();
         } catch (SQLException ex) {
-
             throw new RuntimeException("Error getting gama from if produs.", ex);
         }
         return result;
     }
-
 
     @Override
     public Collection<Gama> getAll() {
         return null;
     }
 
-
-
     protected Connection newConnection() {
-
         try {
             Class.forName("oracle.jdbc.driver.OracleDriver").newInstance();
-
             String url = new StringBuilder()
                     .append("jdbc:oracle:thin:@")
                     .append(host)
@@ -81,10 +75,8 @@ public class JDBCGamaDAO implements GamaDAO {
                     .append(port)
                     .append(":")
                     .append(dbName).toString();
-
             Connection result = DriverManager.getConnection(url, userName, pass);
             result.setAutoCommit(false);
-
             return result;
         } catch (Exception ex) {
             throw new RuntimeException("Error getting DB connection", ex);
@@ -97,5 +89,4 @@ public class JDBCGamaDAO implements GamaDAO {
         gama.setGama(rs.getString("gama"));
         return gama;
     }
-
 }

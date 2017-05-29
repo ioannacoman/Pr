@@ -10,6 +10,7 @@ import java.util.LinkedList;
 /**
  * Created by Skipy on 5/8/2017.
  */
+
 public class JDBCProdusComandatDAO implements ProdusComandatDAO {
     private String host;
     private String port;
@@ -32,13 +33,11 @@ public class JDBCProdusComandatDAO implements ProdusComandatDAO {
         try (Connection connection = newConnection();
              Statement statement = connection.createStatement();
              ResultSet rs = statement.executeQuery(sql)) {
-
-            while (rs.next()) {
+             while (rs.next()) {
                 result.add(extractProduseComandate(rs));
-            }
-            connection.commit();
+             }
+             connection.commit();
         } catch (SQLException ex) {
-
             throw new RuntimeException("Error getting products comade.", ex);
         }
         return result;
@@ -48,7 +47,6 @@ public class JDBCProdusComandatDAO implements ProdusComandatDAO {
     public Collection<ProdusComandat> getAll() {
         return null;
     }
-
 
     @Override
     public Collection<ProdusComandat> getProduse(String gama) {
@@ -76,10 +74,8 @@ public class JDBCProdusComandatDAO implements ProdusComandatDAO {
     }
 
     protected Connection newConnection() {
-
         try {
             Class.forName("oracle.jdbc.driver.OracleDriver").newInstance();
-
             String url = new StringBuilder()
                     .append("jdbc:oracle:thin:@")
                     .append(host)
@@ -87,14 +83,11 @@ public class JDBCProdusComandatDAO implements ProdusComandatDAO {
                     .append(port)
                     .append(":")
                     .append(dbName).toString();
-
             Connection result = DriverManager.getConnection(url, userName, pass);
             result.setAutoCommit(false);
-
             return result;
         } catch (Exception ex) {
             throw new RuntimeException("Error getting DB connection", ex);
         }
-
     }
 }

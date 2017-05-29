@@ -7,7 +7,6 @@ import org.hibernate.validator.constraints.NotEmpty;
  */
 public class Suma extends AbstractModel{
 
-
     @NotEmpty
     private String suma;
 
@@ -18,7 +17,6 @@ public class Suma extends AbstractModel{
     public void setSuma(String suma) {
         this.suma = suma;
     }
-
 
     @Override
     public String toString() {

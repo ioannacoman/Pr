@@ -11,6 +11,7 @@ import java.util.LinkedList;
 /**
  * Created by Skipy on 5/12/2017.
  */
+
 public class JDBCProdusDAO implements ProdusDAO {
 
     private String host;
@@ -33,7 +34,6 @@ public class JDBCProdusDAO implements ProdusDAO {
         try (Connection connection = newConnection();
              ResultSet rs = connection.createStatement()
                      .executeQuery("select rownum as nrcrt, pr.id_produs as id_produs, pr.nume_produs as nume_produs, pr.descriere as descriere, g.gama as gama, pr.um as unm, pr.cant as cant, pp.pret as pret from produse pr, pr_pret pp, gama g where pr.id_gama = g.id_gama and pr.id_produs = pp.id_produs")) {
-
             while (rs.next()) {
                 result.add(extractProduse(rs));
             }
@@ -51,7 +51,6 @@ public class JDBCProdusDAO implements ProdusDAO {
         try (Connection connection = newConnection();
              Statement statement = connection.createStatement();
              ResultSet rs = statement.executeQuery(sql)) {
-
             while (rs.next()) {
                 result.add(extractProduse(rs));
             }
@@ -69,7 +68,6 @@ public class JDBCProdusDAO implements ProdusDAO {
         try (Connection connection = newConnection();
              Statement statement = connection.createStatement();
              ResultSet rs = statement.executeQuery(sql)) {
-
             while (rs.next()) {
                 result.add(extractProduse(rs));
             }
@@ -83,13 +81,12 @@ public class JDBCProdusDAO implements ProdusDAO {
     @Override
     public void addProdusCom(String idComenzi, int idProdus) {
         String sql = "insert into comenzi_d values ("+idComenzi+", " + idProdus + ",1)";
-
         try (Connection connection = newConnection();
              Statement statement = connection.createStatement();
              ResultSet rs = statement.executeQuery(sql)) {
-            connection.commit();
+             connection.commit();
         } catch (SQLException ex) {
-            throw new RuntimeException("err insering poducts in command.", ex);
+             throw new RuntimeException("err insering poducts in command.", ex);
         }
     }
 
@@ -99,9 +96,9 @@ public class JDBCProdusDAO implements ProdusDAO {
         try (Connection connection = newConnection();
              Statement statement = connection.createStatement();
              ResultSet rs = statement.executeQuery(sql)) {
-            connection.commit();
+             connection.commit();
         } catch (SQLException ex) {
-            throw new RuntimeException("err insering poducts in command.", ex);
+             throw new RuntimeException("err insering poducts in command.", ex);
         }
     }
 
@@ -113,27 +110,25 @@ public class JDBCProdusDAO implements ProdusDAO {
             try (Connection connection = newConnection();
                  Statement statement = connection.createStatement();
                  ResultSet rs = statement.executeQuery(sql)) {
-                connection.commit();
+                 connection.commit();
             } catch (SQLException ex) {
-                throw new RuntimeException("err deleting produs from comada with rownum", ex);
+                 throw new RuntimeException("err deleting produs from comada with rownum", ex);
             }
     } else {
             String sql = "delete from comenzi_d where id_comenzi = " + idComenzi + " and id_produs = " + idProdus;
             try (Connection connection = newConnection();
                  Statement statement = connection.createStatement();
                  ResultSet rs = statement.executeQuery(sql)) {
-                connection.commit();
+                 connection.commit();
             } catch (SQLException ex) {
-                throw new RuntimeException("err deleting produs from comada", ex);
+                 throw new RuntimeException("err deleting produs from comada", ex);
             }
         }
     }
 
     protected Connection newConnection() {
-
         try {
             Class.forName("oracle.jdbc.driver.OracleDriver").newInstance();
-
             String url = new StringBuilder()
                     .append("jdbc:oracle:thin:@")
                     .append(host)
@@ -141,7 +136,6 @@ public class JDBCProdusDAO implements ProdusDAO {
                     .append(port)
                     .append(":")
                     .append(dbName).toString();
-
             Connection result = DriverManager.getConnection(url, userName, pass);
             result.setAutoCommit(false);
             return result;

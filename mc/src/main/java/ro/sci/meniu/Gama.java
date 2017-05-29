@@ -5,7 +5,9 @@ import org.hibernate.validator.constraints.NotEmpty;
 /**
  * Created by Skipy on 5/8/2017.
  */
+
 public class Gama extends AbstractModel {
+
     @NotEmpty
     private int idGama;
 

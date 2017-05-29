@@ -29,9 +29,7 @@ public class ProdusComandat extends Produs {
         this.pretTotal = pretTotal;
     }
 
-    public int getIdGama() {
-        return idGama;
-    }
+    public int getIdGama() { return idGama; }
 
     public void setIdGama(int idGama) {
         this.idGama = idGama;

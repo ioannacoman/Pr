@@ -9,6 +9,7 @@ import java.util.Collection;
 /**
  * Created by Skipy on 5/13/2017.
  */
+
 public class JDBCSumaDAO implements SumaDAO {
     private String host;
     private String port;
@@ -30,12 +31,11 @@ public class JDBCSumaDAO implements SumaDAO {
         try (Connection connection = newConnection();
              Statement statement = connection.createStatement();
              ResultSet rs = statement.executeQuery(sql)) {
-            while (rs.next()) {
+             while (rs.next()) {
                 result = extractSuma(rs);
-            }
-            connection.commit();
+             }
+             connection.commit();
         } catch (SQLException ex) {
-
             throw new RuntimeException("Error getting gama.", ex);
         }
         return result;
@@ -46,12 +46,9 @@ public class JDBCSumaDAO implements SumaDAO {
         return null;
     }
 
-
     protected Connection newConnection() {
-
         try {
             Class.forName("oracle.jdbc.driver.OracleDriver").newInstance();
-
             String url = new StringBuilder()
                     .append("jdbc:oracle:thin:@")
                     .append(host)
@@ -59,7 +56,6 @@ public class JDBCSumaDAO implements SumaDAO {
                     .append(port)
                     .append(":")
                     .append(dbName).toString();
-
             Connection result = DriverManager.getConnection(url, userName, pass);
             result.setAutoCommit(false);
             return result;
@@ -67,6 +63,7 @@ public class JDBCSumaDAO implements SumaDAO {
             throw new RuntimeException("Error getting DB connection", ex);
         }
     }
+
     private Suma extractSuma(ResultSet rs) throws SQLException {
         Suma suma = new Suma();
         suma.setSuma(rs.getString("suma"));

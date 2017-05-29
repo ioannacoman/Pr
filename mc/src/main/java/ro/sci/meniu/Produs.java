@@ -5,6 +5,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 /**
  * Created by Skipy on 5/12/2017.
  */
+
 public class Produs extends AbstractModel {
 
 	@NotEmpty

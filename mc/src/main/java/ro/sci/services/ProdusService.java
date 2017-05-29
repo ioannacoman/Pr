@@ -16,15 +16,25 @@ public class ProdusService {
         return dao.getAll();
     }
 
-    public Collection<Produs> listProduse(String gama) { return dao.getProduse(gama); }
+    public Collection<Produs> listProduse(String gama) {
+        return dao.getProduse(gama);
+    }
 
-    public Collection<Produs> getProduseById(int idProdus) { return dao.getProduseById(idProdus); }
+    public Collection<Produs> getProduseById(int idProdus) {
+        return dao.getProduseById(idProdus);
+    }
 
-    public void startComanda(String idComenzi, int idTable){dao.startComanda(idComenzi,idTable);};
+    public void startComanda(String idComenzi, int idTable){
+        dao.startComanda(idComenzi,idTable);
+    };
 
-    public void addProdusCom(String idComenzi, int idProdus) { dao.addProdusCom(idComenzi,idProdus); }
+    public void addProdusCom(String idComenzi, int idProdus) {
+        dao.addProdusCom(idComenzi,idProdus);
+    }
 
-    public void remProdusCom(String idComenzi, int idProdus, int aOrB) {dao.remProdusCom(idComenzi,idProdus,aOrB);}
+    public void remProdusCom(String idComenzi, int idProdus, int aOrB) {
+        dao.remProdusCom(idComenzi,idProdus,aOrB);
+    }
 
     public ProdusDAO getDao() {
         return dao;

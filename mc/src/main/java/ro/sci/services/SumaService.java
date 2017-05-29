@@ -8,9 +8,13 @@ import ro.sci.meniu.Suma;
  */
 public class SumaService {
     private SumaDAO sumaDAO;
-    public Suma getSuma(String idComenzi){return sumaDAO.getSuma(idComenzi);}
+    public Suma getSuma(String idComenzi){
+        return sumaDAO.getSuma(idComenzi);
+    }
     public SumaDAO getSumaDAO() {
         return sumaDAO;
     }
-    public void setSumaDAO(SumaDAO sumaDAO) { this.sumaDAO = sumaDAO; }
+    public void setSumaDAO(SumaDAO sumaDAO) {
+        this.sumaDAO = sumaDAO;
+    }
 }

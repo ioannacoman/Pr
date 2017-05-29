@@ -9,7 +9,7 @@
 	<packaging>jar</packaging>
 
 	<name>mc</name>
-	<description>Demo project for Spring Boot</description>
+	<description>Java GR 6 from SCIT</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>

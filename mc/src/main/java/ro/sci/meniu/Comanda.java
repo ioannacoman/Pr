@@ -5,7 +5,9 @@ import org.hibernate.validator.constraints.NotEmpty;
 /**
  * Created by Skipy on 5/12/2017.
  */
+
 public class Comanda extends AbstractModel{
+
     @NotEmpty
     private int idComanda;
 

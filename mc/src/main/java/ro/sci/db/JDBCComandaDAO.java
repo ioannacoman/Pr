@@ -9,6 +9,7 @@ import java.util.Collection;
 /**
  * Created by Skipy on 5/12/2017.
  */
+
 public class JDBCComandaDAO implements ComandaDAO {
     private String host;
     private String port;
@@ -64,17 +65,16 @@ public class JDBCComandaDAO implements ComandaDAO {
 
     @Override
     public Comanda countComenziDeschise(int idTable) {
-        String sql = "select count(*) as cowntc from comenzi where masa_nr = '" + idTable + "' and data_fin is null";
+        String sql = "select nvl(count(*),0) as cowntc from comenzi where masa_nr = '" + idTable + "' and data_fin is null";
         Comanda result = null;
         try (Connection connection = newConnection();
              Statement statement = connection.createStatement();
              ResultSet rs = statement.executeQuery(sql)) {
-            while (rs.next()) {
+             while (rs.next()) {
                 result = countComanda(rs);
-            }
-            connection.commit();
+             }
+             connection.commit();
         } catch (SQLException ex) {
-
             throw new RuntimeException("Error getting CountCom.", ex);
         }
         return result;
@@ -86,7 +86,7 @@ public class JDBCComandaDAO implements ComandaDAO {
         try (Connection connection = newConnection();
              Statement statement = connection.createStatement();
              ResultSet rs = statement.executeQuery(sql)) {
-            connection.commit();
+             connection.commit();
         } catch (SQLException ex) {
             throw new RuntimeException("err deleting produs from comada_d", ex);
         }
@@ -94,7 +94,7 @@ public class JDBCComandaDAO implements ComandaDAO {
         try (Connection connection = newConnection();
              Statement statement = connection.createStatement();
              ResultSet rs = statement.executeQuery(sql2)) {
-            connection.commit();
+             connection.commit();
         } catch (SQLException ex) {
             throw new RuntimeException("err deleting forom comanda", ex);
         }
@@ -106,7 +106,7 @@ public class JDBCComandaDAO implements ComandaDAO {
         try (Connection connection = newConnection();
              Statement statement = connection.createStatement();
              ResultSet rs = statement.executeQuery(sql)) {
-            connection.commit();
+             connection.commit();
         } catch (SQLException ex) {
             throw new RuntimeException("err updating comenzi", ex);
         }
@@ -118,12 +118,9 @@ public class JDBCComandaDAO implements ComandaDAO {
         return null;
     }
 
-
     protected Connection newConnection() {
-
         try {
             Class.forName("oracle.jdbc.driver.OracleDriver").newInstance();
-
             String url = new StringBuilder()
                     .append("jdbc:oracle:thin:@")
                     .append(host)
@@ -131,7 +128,6 @@ public class JDBCComandaDAO implements ComandaDAO {
                     .append(port)
                     .append(":")
                     .append(dbName).toString();
-
             Connection result = DriverManager.getConnection(url, userName, pass);
             result.setAutoCommit(false);
             return result;

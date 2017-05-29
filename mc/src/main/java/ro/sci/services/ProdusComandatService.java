@@ -15,8 +15,13 @@ public class ProdusComandatService {
     public Collection<ProdusComandat> listAll(String idComanda){
         return produsComandatDAO.listAll(idComanda);
     }
+
     public ProdusComandatDAO getProdusComandatDAO() {
         return produsComandatDAO;
     }
-    public void setProdusComandatDAO(ProdusComandatDAO produsComandatDAO) { this.produsComandatDAO = produsComandatDAO; }
+
+    public void setProdusComandatDAO(ProdusComandatDAO produsComandatDAO) {
+        this.produsComandatDAO = produsComandatDAO;
+
+    }
 }
