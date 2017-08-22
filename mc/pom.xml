@@ -37,25 +37,33 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<!-- -================================- Added By Skipy -================================- -->
+		<!-- Readded Spring Securty -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+		<!-- OracleDBA 12 R2 -->
 		<!-- https://mvnrepository.com/artifact/com.github.noraui/ojdbc7 -->
 		<dependency>
 			<groupId>com.github.noraui</groupId>
 			<artifactId>ojdbc7</artifactId>
 			<version>12.1.0.2</version>
 		</dependency>
-
+		<!-- JDBC Oracle -->
 		<!-- https://mvnrepository.com/artifact/org.springframework.data/spring-data-oracle -->
 		<dependency>
 			<groupId>org.springframework.data</groupId>
 			<artifactId>spring-data-oracle</artifactId>
 			<version>1.0.0.RELEASE</version>
 		</dependency>
+		<!-- -======================================- End -=====================================- -->
 
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
-		</dependency>
 	</dependencies>
 
 	<build>
